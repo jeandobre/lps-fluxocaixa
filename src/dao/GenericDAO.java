@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
@@ -19,6 +20,11 @@ public class GenericDAO<Entidade> {
 	public GenericDAO() {
 		this.classe = (Class<Entidade>) ((ParameterizedType) getClass().getGenericSuperclass())
 				.getActualTypeArguments()[0];
+	}
+	
+	protected boolean exists(final Criteria query) {
+	    query.setProjection(Projections.rowCount());
+	    return query.uniqueResult() != null;
 	}
 
 	public void salvar(Entidade entidade) {

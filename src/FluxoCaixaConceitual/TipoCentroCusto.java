@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tipo_centro_custo")
 public class TipoCentroCusto {
 	
 	@Id
@@ -29,6 +31,16 @@ public class TipoCentroCusto {
 	@OneToMany(mappedBy = "tipoCentroCusto", targetEntity = CentroCusto.class
 			, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CentroCusto> centroCustos;
+	
+	public TipoCentroCusto() {
+		
+	}
+	
+
+	public TipoCentroCusto(String nome) {
+		super();
+		this.nome = nome;
+	}
 
 	public Integer getId() {
 		return id;

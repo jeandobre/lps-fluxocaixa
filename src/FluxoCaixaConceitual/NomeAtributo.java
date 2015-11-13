@@ -9,8 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "nome_atributo",
+	uniqueConstraints=@UniqueConstraint(columnNames = {"nome"}))
 public class NomeAtributo {
 	
 	@Id
@@ -25,6 +29,16 @@ public class NomeAtributo {
 	@ManyToOne
 	@JoinColumn(name="tipo_centro_custo_id")
 	private TipoCentroCusto tipoCentroCusto;
+	
+	public NomeAtributo() {
+	}
+
+
+	public NomeAtributo(String nome, TipoCentroCusto tipoCentroCusto) {
+		super();
+		this.nome = nome;
+		this.tipoCentroCusto = tipoCentroCusto;
+	}
 
 
 	public Integer getId() {
