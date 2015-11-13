@@ -19,8 +19,8 @@ public class HistoricoStatus {
 	@Column
 	private Integer id;
 	
-	@Column(name="desc")
-	private Date date;
+	@Column
+	private Date data;
 	
 	@ManyToOne
 	@JoinColumn(name="status_id")
@@ -38,12 +38,13 @@ public class HistoricoStatus {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	
+	public Date getData() {
+		return data;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public Status getStatus() {

@@ -17,8 +17,12 @@ public class Status {
 	@Column
 	private Integer id;
 	
-	@Column(name="desc")
+	@Column(name="descricao")
 	private String descricao;
+	
+	public Status(){
+		
+	}
 
 	public Status(String descricao) {
 		this.descricao = descricao;

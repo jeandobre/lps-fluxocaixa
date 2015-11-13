@@ -17,6 +17,15 @@ public class TesteCaixa {
 		Status atrasado = statusFacade
 				.adicionarNovoStatus("atrasado");
 		
+		
+		//Adicionando Contas
+		
+		
+		// Listando Contas
+		
+		// Removendo Conta
+		
+		
 
 	}
 

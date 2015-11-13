@@ -13,9 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "categoria")
+@Table(name = "categoria",
+	uniqueConstraints=@UniqueConstraint(columnNames = {"descricao"}))
 public class Categoria {
 
 	@Id
@@ -26,7 +28,7 @@ public class Categoria {
 	@Column
 	private String nome;
 	
-	@Column(name="desc")
+	@Column(name="descricao")
 	private String descricao;
 	
 	@ManyToOne

@@ -26,11 +26,25 @@ public class ValorAtributo {
 	
 	@ManyToOne
 	@JoinColumn(name="centro_custo_id")
-	private List<CentroCusto> centroCustos;
+	private CentroCusto centroCusto;
 
 	@ManyToOne
 	@JoinColumn(name="nome_atributo_id")
-	private List<NomeAtributo> nomeAtributos;
+	private NomeAtributo nomeAtributo;
+	
+	public ValorAtributo(){
+		
+	}
+	
+	public ValorAtributo(String value, CentroCusto centroCusto,
+			NomeAtributo nomeAtributo) {
+		super();
+		this.value = value;
+		this.centroCusto = centroCusto;
+		this.nomeAtributo = nomeAtributo;
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -48,20 +62,20 @@ public class ValorAtributo {
 		this.value = value;
 	}
 
-	public List<CentroCusto> getCentroCustos() {
-		return centroCustos;
+	public CentroCusto getCentroCusto() {
+		return centroCusto;
 	}
 
-	public void setCentroCustos(List<CentroCusto> centroCustos) {
-		this.centroCustos = centroCustos;
+	public NomeAtributo getNomeAtributo() {
+		return nomeAtributo;
 	}
 
-	public List<NomeAtributo> getNomeAtributos() {
-		return nomeAtributos;
+	public void setCentroCusto(CentroCusto centroCusto) {
+		this.centroCusto = centroCusto;
 	}
 
-	public void setNomeAtributos(List<NomeAtributo> nomeAtributos) {
-		this.nomeAtributos = nomeAtributos;
+	public void setNomeAtributo(NomeAtributo nomeAtributo) {
+		this.nomeAtributo = nomeAtributo;
 	}
 	
 }

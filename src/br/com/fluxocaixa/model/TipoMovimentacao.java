@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tipo_movimentacao")
+@Table(name = "tipo_movimentacao",
+	uniqueConstraints=@UniqueConstraint(columnNames = {"descricao"}))
 public class TipoMovimentacao {
 	
 	@Id
@@ -18,8 +20,19 @@ public class TipoMovimentacao {
 	@Column
 	private Integer id;
 	
-	@Column(name="desc")
+	@Column
 	private String descricao;
+	
+	public TipoMovimentacao(){
+		
+	}
+	
+	public TipoMovimentacao(String descricao) {
+		super();
+		this.descricao = descricao;
+	}
+
+
 
 	public Integer getId() {
 		return id;

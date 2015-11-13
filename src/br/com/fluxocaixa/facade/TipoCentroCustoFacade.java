@@ -24,12 +24,13 @@ public class TipoCentroCustoFacade {
 		return tipoCentroCustoDAO.existeTipoCusto(nome);
 	}
 
-	public TipoCentroCusto configurarNovoTipoCusto(String nomeCentroCusto, String [] nomeAtributos ){
+	public TipoCentroCusto configurarNovoTipoCusto(String nomeCentroCusto, NomeAtributo [] nomeAtributos ){
 		List<NomeAtributo> nomeAtributos2 = new ArrayList<NomeAtributo>();
 		TipoCentroCusto tipoCentroCusto = new TipoCentroCusto(nomeCentroCusto); 
 		
-		for (String nomeAtributo : nomeAtributos) {
-			nomeAtributos2.add(new NomeAtributo(nomeAtributo, tipoCentroCusto));
+		for (NomeAtributo nomeAtributo : nomeAtributos) {
+			nomeAtributo.setTipoCentroCusto(tipoCentroCusto);
+			nomeAtributos2.add(nomeAtributo);
 		}
 		
 		tipoCentroCusto.setNomesAtributo(nomeAtributos2);

@@ -22,17 +22,8 @@ public class TipoCentroCustoDAO extends GenericDAO<TipoCentroCusto>{
 		}
 	}
 	
-	public TipoCentroCusto findTipoCusto(String nome){
-		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
-		try {
-			Criteria consulta = sessao.createCriteria(TipoCentroCusto.class);
-			consulta.add(Restrictions.eq("nome", nome));
-			return (TipoCentroCusto) consulta.uniqueResult();
-		} catch (RuntimeException erro) {
-			throw erro;
-		} finally {
-			sessao.close();
-		}
+	public TipoCentroCusto findTipoCustoByNome(String nome){
+		return findByColumnValue("nome", nome);
 	}
 
 }

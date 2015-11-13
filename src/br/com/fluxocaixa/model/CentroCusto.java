@@ -32,6 +32,7 @@ public class CentroCusto {
 	@JoinColumn(name="centro_custo_id")	
 	private TipoCentroCusto tipoCentroCusto;
 	
+
 	
 	public TipoCentroCusto getTipoCentroCusto() {
 		return tipoCentroCusto;
