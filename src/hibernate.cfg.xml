@@ -38,6 +38,24 @@
 
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		
+		<mapping class="FluxoCaixaConceitual."/>
+		<mapping class="br.com.fluxocaixa.model.Categoria"/>
+		
+		<mapping class="br.com.fluxocaixa.model.CentroCusto"/>
+		
+		<mapping class="br.com.fluxocaixa.model.Funcionario"/>
+		<mapping class="br.com.fluxocaixa.model.HistoricoStatus"/>
+		<mapping class="br.com.fluxocaixa.model.Movimentacao"/>
+		
+		<mapping class="br.com.fluxocaixa.model.NomeAtributo"/>
+		<mapping class="br.com.fluxocaixa.model.Status"/>
+		<mapping class="br.com.fluxocaixa.model.TipoCentroCusto"/>
+				
+		<mapping class="br.com.fluxocaixa.model.TipoMovimentacao"/>
+		<mapping class="br.com.fluxocaixa.model.Transferencia"/>
+		<mapping class="br.com.fluxocaixa.model.ValorAtributo"/>
+		
+		
 	</session-factory>
 
 </hibernate-configuration>

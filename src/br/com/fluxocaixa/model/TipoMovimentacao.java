@@ -1,6 +1,8 @@
-	package FluxoCaixaConceitual;
+package br.com.fluxocaixa.model;
 
-	import javax.persistence.Column;
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "status")
-public class Status {
+@Table(name = "tipo_movimentacao")
+public class TipoMovimentacao {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
@@ -33,6 +36,4 @@ public class Status {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
 }
-

@@ -1,4 +1,4 @@
-package dao;
+package br.com.fluxocaixa.dao;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import util.HibernateUtil;
-import FluxoCaixaConceitual.Movimentacao;
-import FluxoCaixaConceitual.TipoMovimentacao;
+import br.com.fluxocaixa.model.Movimentacao;
+import br.com.fluxocaixa.model.TipoMovimentacao;
+import br.com.fluxocaixa.util.HibernateUtil;
 
 public class MovimentacaoDAO extends GenericDAO<Movimentacao> {
 	

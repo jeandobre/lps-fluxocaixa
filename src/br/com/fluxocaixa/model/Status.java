@@ -1,18 +1,17 @@
-package FluxoCaixaConceitual;
+	package br.com.fluxocaixa.model;
 
-import java.util.Date;
-
-import javax.persistence.Column;
+	import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tipo_movimentacao")
-public class TipoMovimentacao {
-	
+@Table(name = "status",
+	uniqueConstraints=@UniqueConstraint(columnNames = {"descricao"}))
+public class Status {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
@@ -20,6 +19,10 @@ public class TipoMovimentacao {
 	
 	@Column(name="desc")
 	private String descricao;
+
+	public Status(String descricao) {
+		this.descricao = descricao;
+	}
 
 	public Integer getId() {
 		return id;
@@ -36,4 +39,6 @@ public class TipoMovimentacao {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
 }
+

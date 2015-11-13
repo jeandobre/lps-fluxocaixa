@@ -1,4 +1,4 @@
-package dao;
+package br.com.fluxocaixa.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import util.HibernateUtil;
+import br.com.fluxocaixa.util.HibernateUtil;
 
 
 public class GenericDAO<Entidade> {

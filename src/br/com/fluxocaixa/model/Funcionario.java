@@ -1,4 +1,4 @@
-package FluxoCaixaConceitual;
+package br.com.fluxocaixa.model;
 
 public class Funcionario {
 

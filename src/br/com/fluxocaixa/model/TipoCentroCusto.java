@@ -1,4 +1,4 @@
-package FluxoCaixaConceitual;
+package br.com.fluxocaixa.model;
 
 import java.util.List;
 
@@ -28,9 +28,9 @@ public class TipoCentroCusto {
 			, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<NomeAtributo> nomesAtributo;
 	
-	@OneToMany(mappedBy = "tipoCentroCusto", targetEntity = CentroCusto.class
-			, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<CentroCusto> centroCustos;
+//	@OneToMany(mappedBy = "tipoCentroCusto", targetEntity = CentroCusto.class
+//			, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private List<CentroCusto> centroCustos;
 	
 	public TipoCentroCusto() {
 		
@@ -66,11 +66,11 @@ public class TipoCentroCusto {
 		this.nomesAtributo = nomesAtributo;
 	}
 
-	public List<CentroCusto> getCentroCustos() {
-		return centroCustos;
-	}
-
-	public void setCentroCustos(List<CentroCusto> centroCustos) {
-		this.centroCustos = centroCustos;
-	}	
+//	public List<CentroCusto> getCentroCustos() {
+//		return centroCustos;
+//	}
+//
+//	public void setCentroCustos(List<CentroCusto> centroCustos) {
+//		this.centroCustos = centroCustos;
+//	}	
 }

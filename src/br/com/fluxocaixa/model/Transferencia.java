@@ -1,4 +1,4 @@
-package FluxoCaixaConceitual;
+package br.com.fluxocaixa.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

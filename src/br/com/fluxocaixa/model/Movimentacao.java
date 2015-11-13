@@ -1,4 +1,4 @@
-package FluxoCaixaConceitual;
+package br.com.fluxocaixa.model;
 
 import java.util.Date;
 import java.util.List;

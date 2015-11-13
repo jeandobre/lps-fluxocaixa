@@ -1,4 +1,4 @@
-package util;
+package br.com.fluxocaixa.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
