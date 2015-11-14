@@ -1,64 +1,59 @@
-	package br.com.fluxocaixa.model;
+package br.com.fluxocaixa.model;
 
-	import javax.persistence.Column;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "status",
-	uniqueConstraints=@UniqueConstraint(columnNames = {"descricao"}))
-public class Status {
-	static public final String DESC_NAO_REALIZADO = "nao realizado";
-	static public final String DESC_REALIZADO = "realizado";
-	static public final String DESC_ATRASADO = "realizado";
-	
+@Table(name="estados_caixa")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name="tipo",
+        discriminatorType=DiscriminatorType.STRING
+)
+public abstract class Status {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
 	private Integer id;
 	
-	@Column(name="descricao")
-	private String descricao;
-	
-	public Status(){
+	@Column
+	private Date data;
 		
+	@ManyToOne
+	@JoinColumn(name="movimento_id")
+	private FluxoCaixa movimento;
+	
+	public Status() {
 	}
-
-	public Status(String descricao) {
-		this.descricao = descricao;
-	}
-
+	
 	public Integer getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public boolean isRealizado(){
-		return descricao.equals(DESC_REALIZADO);
-	}
 	
-	public boolean isNaoRealizado(){
-		return descricao.equals(DESC_NAO_REALIZADO);
+	public Date getData() {
+		return data;
 	}
-	
-	public boolean isAtrasado(){
-		return descricao.equals(DESC_ATRASADO);
+
+	public void setData(Date data) {
+		this.data = data;
 	}
-	
+
+	public FluxoCaixa getMovimento() {
+		return movimento;
+	}
+
+	public void setMovimentacao(FluxoCaixa movimento) {
+		this.movimento = movimento;
+	}
 }
-

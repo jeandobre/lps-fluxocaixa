@@ -1,71 +1,57 @@
 package br.com.fluxocaixa.model;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.sun.istack.internal.NotNull;
 
 @Entity
-@Table(name = "centro_custo")
-public class CentroCusto {
-	
+@Table(name = "centros_custo")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
+public abstract class CentroCusto implements Serializable {
+
+	private static final long serialVersionUID = -3733902990916262114L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
 	private Integer id;
-	
-	@OneToMany(mappedBy = "centroCusto", targetEntity = ValorAtributo.class
-			, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<ValorAtributo> valores;
-	
-	@ManyToOne
-	@JoinColumn(name="centro_custo_id")	
-	private TipoCentroCusto tipoCentroCusto;
-	
-	
-	public CentroCusto(){
-		
-	}
-	
-	public CentroCusto(TipoCentroCusto tipoCentroCusto) {
-		super();
-		this.tipoCentroCusto = tipoCentroCusto;
-	}
 
-	public TipoCentroCusto getTipoCentroCusto() {
-		return tipoCentroCusto;
-	}
+	@Column(length = 255)
+	@NotNull
+	private String nome;
 
-	public void setTipoCentroCusto(TipoCentroCusto tipoCentroCusto) {
-		this.tipoCentroCusto = tipoCentroCusto;
-	}
-	
+	@Column
+	private String descricao;
+
 	public Integer getId() {
 		return this.id;
 	}
 
-	public List<ValorAtributo> getValores() {
-		return valores;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setValores(List<ValorAtributo> valores) {
-		this.valores = valores;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public String getDescricao() {
+		return descricao;
 	}
-	
-	
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
 }
