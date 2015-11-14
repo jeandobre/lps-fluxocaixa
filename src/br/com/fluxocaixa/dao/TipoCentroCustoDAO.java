@@ -23,7 +23,7 @@ public class TipoCentroCustoDAO extends GenericDAO<TipoCentroCusto>{
 	}
 	
 	public TipoCentroCusto findTipoCustoByNome(String nome){
-		return findByColumnValue("nome", nome);
+		return uniqueResultByColumnValue("nome", nome);
 	}
 
 }

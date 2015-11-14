@@ -3,10 +3,8 @@ package br.com.fluxocaixa.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -38,10 +35,8 @@ public abstract class Movimentacao {
 	@Column
 	private String observacao;
 	
-	
-	@ManyToOne
-	@JoinColumn(name="tipo_movimentacao_id")
-	private TipoMovimentacao tipoMovimentacao;
+	@Column(name="tipo_movimentacao")
+	private int tipoMovimentacao;
 	
 	@ManyToOne
 	@JoinColumn(name="categoria_id")
@@ -52,6 +47,32 @@ public abstract class Movimentacao {
     	{@JoinColumn(name="movimentacao_id")}, inverseJoinColumns=
       	{@JoinColumn(name="centro_custo_id")})
 	private List<CentroCusto> centroCusto;
+	
+	public Movimentacao(){
+		
+	}
+	
+	public Movimentacao(Date data, Integer numeroParcela, double valor,
+			String observacao, TipoMovimentacao tipoMovimentacao, Categoria categoria,
+			List<CentroCusto> centroCusto) {
+		super();
+		this.data = data;
+		this.numeroParcela = numeroParcela;
+		this.valor = valor;
+		this.observacao = observacao;
+		this.tipoMovimentacao = tipoMovimentacao.getValor();
+		this.categoria = categoria;
+		this.centroCusto = centroCusto;
+	}
+
+	public TipoMovimentacao recuperarTipoMovimentacao(){
+		return TipoMovimentacao.getByValue(tipoMovimentacao);
+	}
+	
+	public void confTipoMovimentacao(TipoMovimentacao tipoMovimentacao){
+		setTipoMovimentacao(tipoMovimentacao.getValor());
+	}
+
 
 	public Integer getId() {
 		return this.id;
@@ -73,7 +94,7 @@ public abstract class Movimentacao {
 		return observacao;
 	}
 
-	public TipoMovimentacao getTipoMovimentacao() {
+	private int getTipoMovimentacao() {
 		return tipoMovimentacao;
 	}
 
@@ -97,8 +118,25 @@ public abstract class Movimentacao {
 		this.observacao = observacao;
 	}
 
-	public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
+	private void setTipoMovimentacao(int tipoMovimentacao) {
 		this.tipoMovimentacao = tipoMovimentacao;
+	}
+	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public List<CentroCusto> getCentroCusto() {
+		return centroCusto;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public void setCentroCusto(List<CentroCusto> centroCusto) {
+		this.centroCusto = centroCusto;
 	}
 
 	public List<HistoricoStatus> listarStatusPossiveis() {

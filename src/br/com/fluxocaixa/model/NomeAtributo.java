@@ -1,5 +1,7 @@
 package br.com.fluxocaixa.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,13 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
-import org.hamcrest.core.IsInstanceOf;
 
 @Entity
 @Table(name = "nome_atributo", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"nome", "tipoCentroCusto" }))
+		"nome", "tipo_centro_custo_id" }))
 public class NomeAtributo {
 
 	static public enum TipoAtributo {
@@ -36,14 +36,13 @@ public class NomeAtributo {
 
 		public boolean checkValueType(Object value) {
 			switch (this.value) {
-			case 1:
-				return value instanceof String;
 			case 2:
 				return value instanceof Integer;
 			case 3:
 				return value instanceof Double;
 			case 4:
 				return value instanceof Date;
+			case 1:
 			default:
 				return value instanceof String;
 			}
@@ -59,6 +58,20 @@ public class NomeAtributo {
 			}
 
 			return null;
+		}
+
+		public String valueToString(Object value2) {
+			switch (this.value) {
+			case 4:
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				
+				return df.format((Date)value2);
+			case 1:
+			case 2:
+			case 3:
+			default:
+				return value2.toString();
+			}
 		}
 	}
 
@@ -119,7 +132,10 @@ public class NomeAtributo {
 	}
 
 	public TipoAtributo recuperarTipoAtributo() {
-		return TipoAtributo.fromValue(tipo);
+		if(tipoAtributo == null)
+			tipoAtributo = TipoAtributo.fromValue(tipo);
+			
+		return tipoAtributo;
 	}
 
 	public void confTipoAtributo(TipoAtributo tipoAtributo) {

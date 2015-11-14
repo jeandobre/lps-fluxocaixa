@@ -36,15 +36,14 @@ public class ValorAtributo {
 		
 	}
 	
-	public ValorAtributo(String value, CentroCusto centroCusto,
+	public ValorAtributo(Object value, CentroCusto centroCusto,
 			NomeAtributo nomeAtributo) {
 		super();
-		this.value = value;
+		this.value = nomeAtributo.recuperarTipoAtributo().valueToString(value);
 		this.centroCusto = centroCusto;
 		this.nomeAtributo = nomeAtributo;
+		
 	}
-
-
 
 	public Integer getId() {
 		return id;

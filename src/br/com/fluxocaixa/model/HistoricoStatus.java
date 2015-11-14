@@ -27,8 +27,22 @@ public class HistoricoStatus {
 	private Status status;
 	
 	@ManyToOne
-	@JoinColumn(name="fluxo_caixa_id")
-	private Movimentacao fluxoCaixa;
+	@JoinColumn(name="movimentacao_id")
+	private Movimentacao movimentacao;
+	
+	public HistoricoStatus() {
+	}
+	
+	
+
+	public HistoricoStatus(Status status, Movimentacao movimentacao) {
+		super();
+		this.status = status;
+		this.movimentacao = movimentacao;
+		data = new Date();
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -55,11 +69,11 @@ public class HistoricoStatus {
 		this.status = status;
 	}
 
-	public Movimentacao getFluxoCaixa() {
-		return fluxoCaixa;
+	public Movimentacao getMovimentacao() {
+		return movimentacao;
 	}
 
-	public void setFluxoCaixa(Movimentacao fluxoCaixa) {
-		this.fluxoCaixa = fluxoCaixa;
+	public void setMovimentacao(Movimentacao movimentacao) {
+		this.movimentacao = movimentacao;
 	}
 }

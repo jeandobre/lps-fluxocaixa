@@ -31,8 +31,11 @@ public class Categoria {
 	@Column(name="descricao")
 	private String descricao;
 	
+	@Column(name="is_receita")
+	private boolean isReceita;
+	
 	@ManyToOne
-	@JoinColumn(name="pai_id")
+	@JoinColumn(name="pai_id", nullable=true)
 	private Categoria pai;
 	
 	@OneToMany(mappedBy = "pai", targetEntity = Categoria.class
@@ -77,6 +80,14 @@ public class Categoria {
 
 	public void setFilhos(List<Categoria> filhos) {
 		this.filhos = filhos;
-	}	
+	}
 
+	public boolean isReceita() {
+		return isReceita;
+	}
+
+	public void setReceita(boolean isReceita) {
+		this.isReceita = isReceita;
+	}	
+	
 }

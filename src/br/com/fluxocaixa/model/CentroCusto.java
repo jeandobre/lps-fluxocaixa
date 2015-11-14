@@ -25,15 +25,23 @@ public class CentroCusto {
 	private Integer id;
 	
 	@OneToMany(mappedBy = "centroCusto", targetEntity = ValorAtributo.class
-			, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+			, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ValorAtributo> valores;
 	
 	@ManyToOne
 	@JoinColumn(name="centro_custo_id")	
 	private TipoCentroCusto tipoCentroCusto;
 	
-
 	
+	public CentroCusto(){
+		
+	}
+	
+	public CentroCusto(TipoCentroCusto tipoCentroCusto) {
+		super();
+		this.tipoCentroCusto = tipoCentroCusto;
+	}
+
 	public TipoCentroCusto getTipoCentroCusto() {
 		return tipoCentroCusto;
 	}

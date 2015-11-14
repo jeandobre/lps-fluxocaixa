@@ -12,6 +12,10 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "status",
 	uniqueConstraints=@UniqueConstraint(columnNames = {"descricao"}))
 public class Status {
+	static public final String DESC_NAO_REALIZADO = "nao realizado";
+	static public final String DESC_REALIZADO = "realizado";
+	static public final String DESC_ATRASADO = "realizado";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
@@ -42,6 +46,18 @@ public class Status {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public boolean isRealizado(){
+		return descricao.equals(DESC_REALIZADO);
+	}
+	
+	public boolean isNaoRealizado(){
+		return descricao.equals(DESC_NAO_REALIZADO);
+	}
+	
+	public boolean isAtrasado(){
+		return descricao.equals(DESC_ATRASADO);
 	}
 	
 }
