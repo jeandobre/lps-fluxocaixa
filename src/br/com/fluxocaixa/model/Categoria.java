@@ -41,6 +41,28 @@ public class Categoria {
 	@OneToMany(mappedBy = "pai", targetEntity = Categoria.class
 			, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Categoria> filhos;
+	
+	public Categoria(){
+		
+	}
+	
+	public Categoria(String nome, String descricao, boolean isReceita){
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.isReceita = isReceita;
+	}
+	
+	public Categoria(String nome, String descricao, boolean isReceita,
+			Categoria pai) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.isReceita = isReceita;
+		this.pai = pai;
+	}
+
+
 
 	public Integer getId() {
 		return id;

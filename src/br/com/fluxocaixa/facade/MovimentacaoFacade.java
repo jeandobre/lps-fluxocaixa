@@ -36,7 +36,11 @@ public class MovimentacaoFacade {
 		TipoMovimentacao tipoMovimentacao = movimentacao.recuperarTipoMovimentacao();
 		
 		if(categoria != null){
-			if(categoria.isReceita() tipoMovimentacao )
+			if(categoria.isReceita() && tipoMovimentacao != TipoMovimentacao.RECEITA )
+				throw new Exception("Utilizando categoria de despesa em uma receita");
+			
+			if(!categoria.isReceita() && tipoMovimentacao != TipoMovimentacao.DESPESA )
+				throw new Exception("Utilizando categoria de receita  em uma despesa");
 		}
 		
 		if(status.isRealizado() && movimentacao.getData() == null){
@@ -47,7 +51,7 @@ public class MovimentacaoFacade {
 			@Override
 			public void run(Session sessao) {
 				new MovimentacaoDAO().salvar(movimentacao, sessao);
-				new HistoricoStatusDAO().salvar(new HistoricoStatus(status, movimentacao));
+				new HistoricoStatusDAO().salvar(new HistoricoStatus(status, movimentacao),sessao);
 			}
 		};
 		

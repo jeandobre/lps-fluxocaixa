@@ -36,7 +36,7 @@
 
 		<!-- Cria as tabelas do banco de dados -->
 
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<mapping class="br.com.fluxocaixa.model.Categoria"/>
 		<mapping class="br.com.fluxocaixa.model.Status"/>
