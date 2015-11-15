@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -22,7 +23,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.sun.istack.internal.NotNull;
 
 @Entity
 @Table(name = "movimentos")
@@ -38,16 +38,13 @@ public abstract class FluxoCaixa {
 	private Integer id;
 	
 	@Column
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
 	@Column(name="numero_parcela")
-	@NotNull
 	private Integer numeroParcela;
 	
 	@Column
-	@NotNull
 	private Float valor;
 	
 	@Column
@@ -57,13 +54,13 @@ public abstract class FluxoCaixa {
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
 	
-	@ManyToMany(cascade=javax.persistence.CascadeType.ALL, targetEntity=CentroCusto.class)
+	@ManyToMany(cascade=CascadeType.ALL, targetEntity=CentroCusto.class)
     @JoinTable(name="detalhe_movimentos", joinColumns=
     	{@JoinColumn(name="movimento_id")}, inverseJoinColumns=
       	{@JoinColumn(name="centro_custo_id")})
 	private List<CentroCusto> centrosCusto;
 	
-	@OneToMany(mappedBy="movimento")
+	@OneToMany(mappedBy="movimento", cascade=CascadeType.ALL)
 	private List<Status> estados;
 	
 	public FluxoCaixa(){
@@ -82,7 +79,7 @@ public abstract class FluxoCaixa {
 		return numeroParcela;
 	}
 
-	public double getValor() {
+	public Float getValor() {
 		return valor;
 	}
 
@@ -96,9 +93,6 @@ public abstract class FluxoCaixa {
 
 	public void setNumeroParcela(Integer numeroParcela) {
 		this.numeroParcela = numeroParcela;
-		
-		if(numeroParcela > 1 && valor > 0)
-		    valor = new Float(valor / numeroParcela);
 	}
 
 	public void setValor(Float valor) {
@@ -125,8 +119,12 @@ public abstract class FluxoCaixa {
 		this.centrosCusto = centroCusto;
 	}
 
-	public List<Status> listarStatusPossiveis() {
-		return new ArrayList<Status>();
+	public List<String> listarStatusPossiveis() {
+		List<String> lista = new ArrayList<>(3);
+		lista.add("Realizado");
+		lista.add("NaoRealizado");
+		lista.add("Atrasdo");
+		return lista;
 	}
 
 	public List<Status> getEstados() {
@@ -138,4 +136,12 @@ public abstract class FluxoCaixa {
 		estado.setData(new Date());
 		estados.add(estado);
 	}
+
+	@Override
+	public String toString() {
+		return "FluxoCaixa [id=" + id + ", data=" + data + ", numeroParcela=" + numeroParcela + ", valor=" + valor
+				+ ", observacao=" + observacao + ", categoria=" + categoria + ", centrosCusto=" + centrosCusto
+				+ ", estados=" + estados + "]";
+	}
+	
 }

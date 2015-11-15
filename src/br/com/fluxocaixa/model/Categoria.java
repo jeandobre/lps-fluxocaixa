@@ -74,5 +74,10 @@ public abstract class Categoria {
 
 	public void setPai(Categoria pai) {
 		this.pai = pai;
+	}
+
+	@Override
+	public String toString() {
+		return "Categoria [id=" + id + ", nome=" + nome + "]";
 	}	
 }

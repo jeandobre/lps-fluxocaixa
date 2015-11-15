@@ -54,4 +54,8 @@ public abstract class CentroCusto implements Serializable {
 		this.descricao = descricao;
 	}
 
+	@Override
+	public String toString() {
+		return "CentroCusto [id=" + id + ", nome=" + nome + "]";
+	}
 }

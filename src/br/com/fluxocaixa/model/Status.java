@@ -2,6 +2,7 @@ package br.com.fluxocaixa.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -30,7 +31,7 @@ public abstract class Status {
 	@Column
 	private Date data;
 		
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="movimento_id")
 	private FluxoCaixa movimento;
 	
