@@ -21,6 +21,12 @@ public abstract class Fornecedor extends CentroCusto {
 	@Column
 	private String cidade;
 	
+	@Column
+	private String cep;
+	
+	@Column
+	private String telefone;
+	
 	public String getRua() {
 		return rua;
 	}
@@ -67,13 +73,5 @@ public abstract class Fornecedor extends CentroCusto {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	@Column
-	private String cep;
-	
-	@Column
-	private String telefone;
-	
-	
+	}	
 }

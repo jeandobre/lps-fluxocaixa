@@ -44,5 +44,7 @@
   <mapping class="br.com.fluxocaixa.model.Despesa"/>
   <mapping class="br.com.fluxocaixa.model.Transferencia"/>
   <mapping class="br.com.fluxocaixa.model.Receita"/>
+  <mapping class="br.com.fluxocaixa.model.UnidadeOrganizacional"/>
+  <mapping class="br.com.fluxocaixa.model.Funcionario"/>
  </session-factory>
 </hibernate-configuration>

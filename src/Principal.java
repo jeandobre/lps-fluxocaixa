@@ -13,6 +13,7 @@ import br.com.fluxocaixa.model.Despesa;
 import br.com.fluxocaixa.model.NaoRealizado;
 import br.com.fluxocaixa.model.Realizado;
 import br.com.fluxocaixa.model.Receita;
+import br.com.fluxocaixa.model.UnidadeOrganizacional;
 
 public class Principal {
 	
