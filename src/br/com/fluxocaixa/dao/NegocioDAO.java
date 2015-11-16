@@ -88,7 +88,7 @@ public class NegocioDAO {
 		salvarGenerico(receita);
 	}
 	
-public void inserirDespesas(Despesa despesa, Status estado) {
+	public void inserirDespesas(Despesa despesa, Status estado) {
 		
 		if(estado == null){
 			System.out.println("Estado da despesa inválido");
@@ -131,24 +131,24 @@ public void inserirDespesas(Despesa despesa, Status estado) {
 		System.out.println("Nova despesa salva com sucesso");
 	}
 
-    void alterarDespesas(Despesa despesa, Status novoEstado){
+	public void alterarDespesas(Despesa despesa, Status novoEstado){
     	despesa.setStatus(novoEstado);
     	salvarGenerico(despesa);
     	System.out.println("Despesa editada com sucesso");
     }
     
-    void excluirDespesas(Despesa despesa){
+    public void excluirDespesas(Despesa despesa){
     	excluirGenerico(despesa);
     	System.out.println("Despesa excluída com sucesso");
     }
     
-    void alterarReceitas(Receita receita, Status novoEstado){
+    public void alterarReceitas(Receita receita, Status novoEstado){
     	receita.setStatus(novoEstado);
     	salvarGenerico(receita);
     	System.out.println("Receita editada com sucesso");
     }
     
-    void excluirReceitas(Receita receita){
+    public void excluirReceitas(Receita receita){
     	excluirGenerico(receita);
     	System.out.println("Receita excluída com sucesso");
     }
@@ -157,7 +157,7 @@ public void inserirDespesas(Despesa despesa, Status estado) {
         return session.createCriteria(CategoriaCredito.class).list();
 	}
 	
-	public List<CategoriaCredito> listarCategoriaDespesas(){
+	public List<CategoriaDebito> listarCategoriaDespesas(){
         return session.createCriteria(CategoriaDebito.class).list();
 	}
 	
